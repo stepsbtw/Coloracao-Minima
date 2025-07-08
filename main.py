@@ -5,7 +5,7 @@ from utils import run_algorithm
 from parse_instances import parse_dimacs
 
 if __name__ == "__main__":
-    grafo = parse_dimacs('instancias/myciel5.col')
+    grafo = parse_dimacs('instances/myciel5.col')
 
     results = []
 
