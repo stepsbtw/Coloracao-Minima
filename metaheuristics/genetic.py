@@ -70,6 +70,6 @@ def genetic_algorithm_coloring(graph, max_colors=5, population_size=50, generati
     used_colors = sorted(set(best_solution.values()))
     color_map = {c: i for i, c in enumerate(used_colors)}
     remapped = {v: color_map[best_solution[v]] for v in best_solution}
-    conflicts = count_conflicts(remapped, graph)
+    conflicts = utils.count_conflicts(remapped, graph)
 
     return remapped, len(used_colors), conflicts
