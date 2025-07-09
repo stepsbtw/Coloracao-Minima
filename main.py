@@ -13,10 +13,10 @@ from ampl_coloring import graph_coloring_ampl, graph_coloring_ampl_cplex
 
 # Dicionário de ótimos conhecidos para instâncias Myciel
 OTIMOS = {
-    #'myciel2.col': 3,
-    #'myciel3.col': 4,
-    #'myciel4.col': 5,
-    #'myciel5.col': 6,
+    'myciel2.col': 3,
+    'myciel3.col': 4,
+    'myciel4.col': 5,
+    'myciel5.col': 6,
     'myciel6.col': 7,
     'myciel7.col': 8,
     'le450_5a.col': 5,
