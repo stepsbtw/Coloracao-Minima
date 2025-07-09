@@ -1,0 +1,4 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+jean.col,BFS-CA,10,0,0.0005,0
+jean.col,Welsh-Powell,10,0,0.0006,0
+jean.col,DSATUR,10,0,0.0025,0

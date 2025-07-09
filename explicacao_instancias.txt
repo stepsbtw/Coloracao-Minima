@@ -1,0 +1,109 @@
+# Informações das Instâncias de Grafos para o Problema de Coloração
+
+Este arquivo descreve as instâncias usadas nos testes de coloração, destacando sua origem, tipo, características estruturais e o número cromático ótimo conhecido (quando disponível).
+
+---
+
+1. myciel3.col
+   - Classe: MYC (Mycielski)
+   - Vértices/Arestas: 11 / 20
+   - Número Cromático Ótimo: 4
+   - Descrição: Grafo livre de triângulos (clique máxima = 2), mas com número cromático superior a 2. Ideal para testar algoritmos que não dependem apenas da clique máxima.
+
+2. myciel4.col
+   - Classe: MYC
+   - Vértices/Arestas: 23 / 71
+   - Ótimo: 5
+
+3. myciel5.col
+   - Classe: MYC
+   - Vértices/Arestas: 47 / 236
+   - Ótimo: 6
+
+4. myciel6.col
+   - Classe: MYC
+   - Vértices/Arestas: 95 / 755
+   - Ótimo: 7
+
+5. myciel7.col
+   - Classe: MYC
+   - Vértices/Arestas: 191 / 2360
+   - Ótimo: 8
+
+---
+
+6. le450_5a.col
+   - Classe: LEI (Leighton)
+   - Vértices/Arestas: 450 / 5714
+   - Ótimo: 5
+   - Descrição: Grafo com coloração ótima conhecida, usado para benchmark de algoritmos em grafos densos.
+
+7. le450_15b.col
+   - Classe: LEI
+   - Vértices/Arestas: 450 / 8169
+   - Ótimo: 15
+
+---
+
+8. jean.col
+   - Classe: SGB (Stanford GraphBase)
+   - Vértices/Arestas: 80 / 254
+   - Tipo: Grafo de personagens do livro *Les Misérables*
+   - Ótimo: 10
+   - Descrição: Grafos de coocorrência em literatura — densidade moderada com comunidades de alta conexão.
+
+9. david.col
+   - Classe: SGB
+   - Vértices/Arestas: 87 / 406
+   - Tipo: Personagens de *David Copperfield*
+   - Ótimo: 11
+
+10. homer.col
+    - Classe: SGB
+    - Vértices/Arestas: 561 / 1629
+    - Tipo: Personagens da *Ilíada*
+    - Ótimo: 13
+
+---
+
+11. queen8_12.col
+    - Classe: SGB
+    - Vértices/Arestas: 96 / 1368
+    - Tipo: Grafo da Rainha (tabuleiro 8x12)
+    - Ótimo: 12
+    - Descrição: Cada nó representa uma casa do tabuleiro; ligações são feitas por linhas, colunas e diagonais — alta simetria e densidade.
+
+12. queen13_13.col
+    - Classe: SGB
+    - Vértices/Arestas: 169 / 6656
+    - Ótimo: 13
+
+---
+
+13. miles1000.col
+    - Classe: SGB
+    - Vértices/Arestas: 128 / 3216
+    - Tipo: Grafo geográfico (cidades conectadas por distância em milhas)
+    - Ótimo: 42
+
+14. miles1500.col
+    - Classe: SGB
+    - Vértices/Arestas: 128 / 5198
+    - Ótimo: 73
+
+15. miles500.col
+    - Classe: SGB
+    - Vértices/Arestas: 128 / 1170
+    - Ótimo: 20
+
+16. miles750.col
+    - Classe: SGB
+    - Vértices/Arestas: 128 / 2113
+    - Ótimo: 31
+
+---
+
+# Notas Finais:
+- **MYC**: Construções com clique 2 e coloração alta. Bons testes para algoritmos que não usam apenas heurísticas baseadas em cliques.
+- **LEI**: Grafos artificiais com coloração ótima conhecida.
+- **SGB**: Grafos baseados em dados reais — personagens de livros, cidades, xadrez — com padrões naturais ou simétricos que desafiam heurísticas simples.

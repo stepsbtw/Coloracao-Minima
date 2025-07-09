@@ -1,0 +1,4 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+homer.col,BFS-CA,13,0,0.0025,0
+homer.col,Welsh-Powell,13,0,0.0035,0
+homer.col,DSATUR,13,0,0.0616,0

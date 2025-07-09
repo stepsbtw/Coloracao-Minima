@@ -1,0 +1,4 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+myciel3.col,BFS-CA,4,0,0.0001,
+myciel3.col,Welsh-Powell,4,0,0.0,
+myciel3.col,DSATUR,4,0,0.0001,

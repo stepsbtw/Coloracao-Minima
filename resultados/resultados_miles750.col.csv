@@ -1,0 +1,4 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+miles750.col,BFS-CA,34,0,0.0015,3
+miles750.col,Welsh-Powell,32,0,0.0073,1
+miles750.col,DSATUR,31,0,0.0148,0

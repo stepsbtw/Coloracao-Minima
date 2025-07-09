@@ -1,0 +1,6 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+myciel4.col,BFS-CA,5,0,0.0001,0
+myciel4.col,Welsh-Powell,5,0,0.0008,0
+myciel4.col,DSATUR,5,0,0.0005,0
+myciel4.col,OR-Tools CP-SAT,5,0,0.422,0
+myciel4.col,AMPL (Gurobi),5,0,1.3275,0

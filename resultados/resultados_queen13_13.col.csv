@@ -1,0 +1,4 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+queen13_13.col,BFS-CA,21,0,0.0022,8
+queen13_13.col,Welsh-Powell,23,0,0.0068,10
+queen13_13.col,DSATUR,18,0,0.0256,5

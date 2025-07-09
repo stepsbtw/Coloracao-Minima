@@ -1,0 +1,4 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+david.col,BFS-CA,11,0,0.0006,0
+david.col,Welsh-Powell,11,0,0.001,0
+david.col,DSATUR,11,0,0.0034,0

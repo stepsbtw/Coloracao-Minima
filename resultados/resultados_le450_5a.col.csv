@@ -1,0 +1,4 @@
+Instancia,Algoritmo,Cores,Conflitos,Tempo (s),Gap para ótimo
+le450_5a.col,BFS-CA,12,0,0.0077,7
+le450_5a.col,Welsh-Powell,11,0,0.0084,6
+le450_5a.col,DSATUR,10,0,0.0707,5
