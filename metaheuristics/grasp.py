@@ -1,4 +1,7 @@
-import utils
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from utils import count_conflicts
 import random
 
 def local_search_grasp(coloring, graph, max_colors):
@@ -15,7 +18,7 @@ def local_search_grasp(coloring, graph, max_colors):
                 if c != original_color and c not in used_colors:
                     candidate = current.copy()
                     candidate[v] = c
-                    if utils.count_conflicts(candidate, graph) < utils.count_conflicts(current, graph):
+                    if count_conflicts(candidate, graph) < count_conflicts(current, graph):
                         current = candidate
                         improved = True
                         break
@@ -23,7 +26,7 @@ def local_search_grasp(coloring, graph, max_colors):
                 break
 
     used_colors = set(current.values())
-    return current, len(used_colors), utils.count_conflicts(current, graph)
+    return current, len(used_colors), count_conflicts(current, graph)
 
 def grasp_coloring(graph, max_colors=10, iterations=50, rcl_size=3):
     vertices = list(graph.keys())
@@ -67,8 +70,10 @@ def grasp_coloring(graph, max_colors=10, iterations=50, rcl_size=3):
             best_num_colors = num_colors
 
     # Remapeia cores para contagem sequencial
+    if best_solution is None:
+        return None
     used_colors = sorted(set(best_solution.values()))
     color_map = {c: i for i, c in enumerate(used_colors)}
     remapped = {v: color_map[best_solution[v]] for v in best_solution}
 
-    return remapped, best_num_colors, best_conflicts
+    return remapped

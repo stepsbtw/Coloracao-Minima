@@ -49,10 +49,10 @@ def graph_coloring_pulp(graph, max_colors=None):
             prob += x[(v, c)] <= y[c], f"ColorUsed_{v}_cor{c}"
     
     # Resolver
-    solver = pulp.PULP_CBC_CMD(msg=True)  # Mudar para outro solver se quiser
+    #solver = pulp.PULP_CBC_CMD(msg=True)  # Mudar para outro solver se quiser
     #solver = pulp.CPLEX_CMD(msg=True)
     #solver = pulp.CPLEX_PY(msg=True)
-    #solver = pulp.GUROBI_CMD(msg=True)
+    solver = pulp.GUROBI_CMD(msg=True)
     #solver = pulp.GUROBI(msg=True)
 
 
@@ -70,5 +70,8 @@ def graph_coloring_pulp(graph, max_colors=None):
             if pulp.value(x[(v, c)]) == 1:
                 coloring[v] = c
                 break
-    
-    return coloring
+    # Remapeamento sequencial das cores
+    used_colors = sorted(set(coloring.values()))
+    color_map = {c: i for i, c in enumerate(used_colors)}
+    remapped = {v: color_map[coloring[v]] for v in coloring}
+    return remapped

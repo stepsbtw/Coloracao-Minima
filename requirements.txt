@@ -2,4 +2,6 @@ pulp
 ortools
 gurobipy
 networkx
+matplotlib
+amplpy
 #cplex

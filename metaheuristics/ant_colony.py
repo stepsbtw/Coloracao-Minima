@@ -1,6 +1,9 @@
 from collections import defaultdict
 import random
-import utils
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from utils import count_conflicts
 
 def aco_coloring(graph, max_colors=5, num_ants=10, iterations=100, alpha=1.0, beta=2.0, evaporation=0.1):
     vertices = list(graph.keys())
@@ -33,7 +36,7 @@ def aco_coloring(graph, max_colors=5, num_ants=10, iterations=100, alpha=1.0, be
 
                 coloring[v] = chosen_color
 
-            conflicts = utils.count_conflicts(coloring, graph)
+            conflicts = count_conflicts(coloring, graph)
             used_colors = len(set(coloring.values()))
             all_solutions.append((coloring, conflicts, used_colors))
 
@@ -55,8 +58,10 @@ def aco_coloring(graph, max_colors=5, num_ants=10, iterations=100, alpha=1.0, be
                 pheromone[v][coloring[v]] += contribution
 
     # Remapeia cores sequencialmente
+    if best_solution is None:
+        return None
     used_colors = sorted(set(best_solution.values()))
     color_map = {c: i for i, c in enumerate(used_colors)}
     remapped = {v: color_map[best_solution[v]] for v in best_solution}
 
-    return remapped, best_used_colors, best_conflicts
+    return remapped

@@ -31,10 +31,12 @@ def run_algorithm(name, func, *args, **kwargs):
     # Detectar e passar max_colors se necessário
     if graph:
         grau_max = max(len(vizinhos) for vizinhos in graph.values())
+        from inspect import signature
         sig = signature(func)
         if "max_colors" in sig.parameters and "max_colors" not in kwargs:
             kwargs["max_colors"] = grau_max + 1
 
+    import time
     start = time.time()
     result = func(*args, **kwargs)
     end = time.time()
@@ -42,12 +44,9 @@ def run_algorithm(name, func, *args, **kwargs):
     if result is None:
         return {"Algoritmo": name, "Cores": "-", "Conflitos": "-", "Tempo (s)": round(end - start, 4)}
 
-    if isinstance(result, tuple):
-        coloring, num_cores, conflitos = result
-    else:
-        coloring = result
-        num_cores = 1 + max(coloring.values()) if coloring else "-"
-        conflitos = count_conflicts(coloring, graph) if coloring else "-"
+    coloring = result
+    num_cores = len(set(coloring.values())) if coloring else "-"
+    conflitos = count_conflicts(coloring, graph) if coloring else "-"
 
     return {
         "Algoritmo": name,

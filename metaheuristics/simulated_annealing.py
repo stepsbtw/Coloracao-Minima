@@ -1,7 +1,10 @@
 import random
 import math
 
-import utils
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from utils import count_conflicts, get_neighbors
 
 def simulated_annealing_coloring(graph, max_colors=10, initial_temp=100.0, alpha=0.95, max_iter=1000):
     """Heurística Simulated Annealing para coloração de grafos."""
@@ -9,7 +12,7 @@ def simulated_annealing_coloring(graph, max_colors=10, initial_temp=100.0, alpha
     vertices = list(graph.keys())
     # Solução inicial aleatória
     current = {v: random.randint(0, max_colors - 1) for v in vertices}
-    current_conflicts = utils.count_conflicts(current, graph)
+    current_conflicts = count_conflicts(current, graph)
 
     best = current.copy()
     best_conflicts = current_conflicts
@@ -20,9 +23,9 @@ def simulated_annealing_coloring(graph, max_colors=10, initial_temp=100.0, alpha
         if best_conflicts == 0:
             break
 
-        neighbors = utils.get_neighbors(current, graph, max_colors)
+        neighbors = get_neighbors(current, graph, max_colors)
         next_choice = random.choice(neighbors)
-        next_conflicts = utils.count_conflicts(next_choice, graph)
+        next_conflicts = count_conflicts(next_choice, graph)
 
         delta = next_conflicts - current_conflicts
         if delta < 0 or random.random() < math.exp(-delta / T):
@@ -39,4 +42,4 @@ def simulated_annealing_coloring(graph, max_colors=10, initial_temp=100.0, alpha
     color_map = {c: i for i, c in enumerate(sorted(used_colors))}
     remapped = {v: color_map[best[v]] for v in best}
 
-    return remapped, len(set(remapped.values())), best_conflicts
+    return remapped

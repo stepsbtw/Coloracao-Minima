@@ -52,7 +52,11 @@ def graph_coloring_ortools(graph, max_colors=None):
                 if solver.Value(x[v, c]) == 1:
                     coloring[v] = c
                     break
-        return coloring
+        # Remapeamento sequencial das cores
+        used_colors = sorted(set(coloring.values()))
+        color_map = {c: i for i, c in enumerate(used_colors)}
+        remapped = {v: color_map[coloring[v]] for v in coloring}
+        return remapped
     else:
         print("Não foi encontrada solução viável.")
         return None

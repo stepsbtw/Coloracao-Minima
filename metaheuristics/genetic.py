@@ -1,10 +1,13 @@
 import random
-import utils
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from utils import count_conflicts
 
 
 def fitness(coloring, graph):
     """Avalia a qualidade da solução."""
-    conflicts = utils.count_conflicts(coloring, graph)
+    conflicts = count_conflicts(coloring, graph)
     used_colors = len(set(coloring.values()))
     # Penalizar mais conflitos, depois cores
     return conflicts * 1000 + used_colors
@@ -70,6 +73,6 @@ def genetic_algorithm_coloring(graph, max_colors=5, population_size=50, generati
     used_colors = sorted(set(best_solution.values()))
     color_map = {c: i for i, c in enumerate(used_colors)}
     remapped = {v: color_map[best_solution[v]] for v in best_solution}
-    conflicts = utils.count_conflicts(remapped, graph)
+    conflicts = count_conflicts(remapped, graph)
 
-    return remapped, len(used_colors), conflicts
+    return remapped

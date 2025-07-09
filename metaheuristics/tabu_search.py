@@ -1,4 +1,7 @@
-import utils
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from utils import count_conflicts
 import random
 from collections import deque
 
@@ -6,7 +9,7 @@ def tabu_search_coloring(graph, max_colors=5, tabu_tenure=7, max_iter=500):
     vertices = list(graph.keys())
     # Solução inicial aleatória
     current = {v: random.randint(0, max_colors - 1) for v in vertices}
-    current_conflicts = utils.count_conflicts(current, graph)
+    current_conflicts = count_conflicts(current, graph)
 
     best = current.copy()
     best_conflicts = current_conflicts
@@ -31,7 +34,7 @@ def tabu_search_coloring(graph, max_colors=5, tabu_tenure=7, max_iter=500):
 
                     candidate = current.copy()
                     candidate[v] = new_color
-                    conflicts = utils.count_conflicts(candidate, graph)
+                    conflicts = count_conflicts(candidate, graph)
 
                     # Aceita movimento se melhora ou se é o melhor até agora
                     if conflicts < best_candidate_conflicts or (conflicts < best_conflicts):
@@ -56,4 +59,4 @@ def tabu_search_coloring(graph, max_colors=5, tabu_tenure=7, max_iter=500):
     color_map = {c: i for i, c in enumerate(used_colors)}
     final = {v: color_map[best[v]] for v in best}
 
-    return final, len(used_colors), best_conflicts
+    return final
