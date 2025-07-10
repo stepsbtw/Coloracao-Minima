@@ -5,72 +5,71 @@ import csv
 
 from heuristics import dsatur, bfs_ca, welsh_powell
 from metaheuristics import ant_colony, genetic, grasp, simulated_annealing, tabu_search
-from ilp import ortools_sat, pulp_ilp
+#from ilp import ortools_sat, pulp_ilp
 from utils import run_algorithm
 from parse_instances import parse_dimacs
-from visualizacao import visualizar_grafo, visualizar_comparacao_grafos, visualizar_estatisticas_cores
-from ampl_coloring import graph_coloring_ampl, graph_coloring_ampl_cplex
+#from visualizacao import visualizar_grafo, visualizar_comparacao_grafos, visualizar_estatisticas_cores
+#from ampl_coloring import graph_coloring_ampl, graph_coloring_ampl_cplex
 
-# Dicionário de ótimos conhecidos para instâncias Myciel
+# Dicionário de ótimos conhecidos para instâncias
 OTIMOS = {
-    'myciel2.col': 3,
-    'myciel3.col': 4,
-    'myciel4.col': 5,
-    'myciel5.col': 6,
-    'myciel6.col': 7,
-    'myciel7.col': 8,
-    'le450_5a.col': 5,
-    'jean.col': 10,
-    'david.col': 11,
-    'homer.col': 13,
-    'queen8_12.col': 12,
-    'le450_15b.col': 15,
-    'queen13_13.col': 13,
-    'miles1000.col': 42,
-    'miles1500.col': 73,
-    'miles500.col': 20,
-    'miles750.col': 31,
+    "fpsol2.i.1.col": 65,
+    "fpsol2.i.2.col": 30,
+    "fpsol2.i.3.col": 30,
+    "inithx.i.1.col": 54,
+    "inithx.i.2.col": 31,
+    "inithx.i.3.col": 31,
+    "le450_15a.col": 15,
+    "le450_15b.col": 15,
+    "le450_15c.col": 15,
+    "le450_15d.col": 15,
+    "le450_25a.col": 25,
+    "le450_25b.col": 25,
+    "le450_25c.col": 25,
+    "le450_25d.col": 25,
+    "le450_5a.col": 5,
+    "le450_5b.col": 5,
+    "le450_5c.col": 5,
+    "le450_5d.col": 5,
+    "mulsol.i.1.col": 49,
+    "mulsol.i.2.col": 31,
+    "mulsol.i.3.col": 31,
+    "mulsol.i.4.col": 31,
+    "mulsol.i.5.col": 31,
+    "zeroin.i.1.col": 49,
+    "zeroin.i.2.col": 30,
+    "zeroin.i.3.col": 30,
+    "anna.col": 11,
+    "david.col": 11,
+    "homer.col": 13,
+    "huck.col": 11,
+    "jean.col": 10,
+    "games120.col": 9,
+    "miles1000.col": 42,
+    "miles1500.col": 73,
+    "miles250.col": 8,
+    "miles500.col": 20,
+    "miles750.col": 31,
+    "queen11_11.col": 11,
+    "queen13_13.col": 13,
+    "queen5_5.col": 5,
+    "queen6_6.col": 7,
+    "queen7_7.col": 7,
+    "queen8_12.col": 12,
+    "queen8_8.col": 9,
+    "queen9_9.col": 10,
+    "myciel3.col": 4,
+    "myciel4.col": 5,
+    "myciel5.col": 6,
+    "myciel6.col": 7,
+    "myciel7.col": 8
 }
 
 if __name__ == "__main__":
     # Lista de todas as instâncias disponíveis
-    todas_instancias = [
-        'instances/myciel2.col',
-        'instances/myciel3.col',
-        'instances/myciel4.col',
-        'instances/myciel5.col',
-        'instances/myciel6.col',
-        'instances/myciel7.col',
-        'instances/le450_5a.col',
-        'instances/jean.col',
-        'instances/david.col',
-        'instances/homer.col',
-        'instances/queen8_12.col',
-        'instances/le450_15b.col',
-        'instances/queen13_13.col',
-        'instances/miles1000.col',
-        'instances/miles1500.col',
-        'instances/miles500.col',
-        'instances/miles750.col',
-    ]
-    
-    # Instâncias padrão (as que estavam ativas)
-    instancias_padrao = [
-        'instances/myciel6.col',
-        'instances/myciel7.col',
-        'instances/le450_5a.col',
-        'instances/jean.col',
-        'instances/david.col',
-        'instances/homer.col',
-        'instances/queen8_12.col',
-        'instances/le450_15b.col',
-        'instances/queen13_13.col',
-        'instances/miles1000.col',
-        'instances/miles1500.col',
-        'instances/miles500.col',
-        'instances/miles750.col',
-    ]
-    
+    todas_instancias = OTIMOS.keys()
+    instancias_padrao = OTIMOS.keys()
+
     print("="*60)
     print("COLORAÇÃO MÍNIMA DE GRAFOS")
     print("="*60)
@@ -145,8 +144,8 @@ if __name__ == "__main__":
         #colorings["AMPL (Gurobi)"] = graph_coloring_ampl(grafo, ampl_model_path='graph_coloring.mod', solver='gurobi')
 
         # Salvar resultados individuais
-        with open(f'resultados_{nome_instancia}.csv', 'w', newline='') as csvfile:
-            fieldnames = ['Instancia', 'Algoritmo', 'Cores', 'Conflitos', 'Tempo (s)', 'Gap para ótimo']
+        with open(f'resultados/resultados_{nome_instancia}.csv', 'w', newline='') as csvfile:
+            fieldnames = ['Instancia', 'Algoritmo', 'Cores', 'Conflitos', 'Tempo (s)', 'Gap para otimo']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             for r in results:
@@ -162,7 +161,7 @@ if __name__ == "__main__":
                     'Cores': r['Cores'],
                     'Conflitos': r['Conflitos'],
                     'Tempo (s)': r['Tempo (s)'],
-                    'Gap para ótimo': gap if gap is not None else ''
+                    'Gap para otimo': gap if gap is not None else ''
                 }
                 writer.writerow(row)
                 todos_resultados.append(row)
@@ -174,6 +173,7 @@ if __name__ == "__main__":
         for r in results:
             print(f"{r['Algoritmo']:<25} {r['Cores']:<6} {r['Conflitos']:<10} {r['Tempo (s)']:<10}")
         
+        '''
         # Menu de visualização
         print("\n" + "="*60)
         print("OPÇÕES DE VISUALIZAÇÃO")
@@ -267,7 +267,7 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Erro na visualização: {e}")
             print("Continuando para a próxima instância...")
-    
+    '''
     # Resumo final
     print("\n" + "="*80)
     print("RESUMO FINAL - TODAS AS INSTÂNCIAS")
@@ -278,6 +278,19 @@ if __name__ == "__main__":
     for resultado in todos_resultados:
         print(f"{resultado['Instancia']:<20} {resultado['Algoritmo']:<20} {resultado['Cores']:<8} {resultado['Conflitos']:<10} {resultado['Tempo (s)']:<10}")
     
+    import csv
+
+
+    # --- Fora do loop, escreve todos os resultados num CSV único ---
+    with open('resultados_todos.csv', 'w', newline='') as csvfile:
+        fieldnames = ['Instancia', 'Algoritmo', 'Cores', 'Conflitos', 'Tempo (s)', 'Gap para otimo']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in todos_resultados:
+            writer.writerow(row)
+
+    print('Todos os resultados foram salvos em resultados_todos.csv')
+
     print("\n" + "="*80)
     print("EXECUÇÃO CONCLUÍDA!")
     print("="*80)

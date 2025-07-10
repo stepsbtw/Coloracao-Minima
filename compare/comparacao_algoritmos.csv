@@ -1,0 +1,4 @@
+Algoritmo,Gap médio,Desvio padrão do Gap,Tempo médio (s),Desvio padrão do Tempo
+BFS-CA,3.24,4.19,0.0037,0.0062
+DSATUR,1.48,2.42,0.0484,0.0583
+Welsh-Powell,2.12,3.24,0.0159,0.0191
